@@ -69,6 +69,13 @@ endif;
                             </ul>
                         </li>
 
+                        <li class="li<?php if (in_array('youtube', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Videos Youtube</a>
+                            <ul class="sub">
+                                <li><a href="painel.php?exe=youtube/create">Criar Categoria</a></li>
+                                <li><a href="painel.php?exe=youtube/index">Listar / Editar Categorias</a></li>
+                            </ul>
+                        </li> 
+
                         <li class="li<?php if (in_array('categories', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Categorias</a>
                             <ul class="sub">
                                 <li><a href="painel.php?exe=categories/create">Criar Categoria</a></li>

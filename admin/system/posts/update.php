@@ -31,7 +31,7 @@
             $WsPosts->setPost_id($postid);
             $WsPosts->Execute()->find();
             if (!$WsPosts->Execute()->getResult()):
-                header('Location: painel.php?exe=post/index&empty=true');
+                header('Location: painel.php?exe=posts/index&empty=true');
             else:
                 $post = (array) $WsPosts->Execute()->getResult();
                 $post['post_date'] = date('d/m/Y H:i:s', strtotime($post['post_date']));

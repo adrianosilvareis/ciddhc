@@ -41,7 +41,7 @@ class Check {
         self::$Data = strip_tags(trim(self::$Data));
         self::$Data = str_replace(' ', '-', self::$Data);
         self::$Data = str_replace(array('-----', '----', '---', '--'), '-', self::$Data);
-        
+
         return strtolower(utf8_encode(self::$Data));
     }
 
@@ -108,12 +108,12 @@ class Check {
         $now = date('Y-m-d H:i:s');
         $deleteUserOnline = new WsSiteviewsOnline;
         $deleteUserOnline->setOnline_endview($now);
-        $deleteUserOnline->Execute()->delete($deleteUserOnline->getThis() , "online_endview < :online_endview");
+        $deleteUserOnline->Execute()->delete($deleteUserOnline->getThis(), "online_endview < :online_endview");
         $deleteUserOnline->Execute()->findAll();
 
         return $deleteUserOnline->Execute()->getRowCount();
     }
-    
+
     /**
      * <b>Imagem Upload:</b> Ao executar este HELPER, ele automaticamente verifica a existencia da imagem na pasta
      * uploads. Se existir retorna a imagem redimensionada!
@@ -131,4 +131,33 @@ class Check {
         endif;
     }
 
+    /**
+     * Recebe a mensagem de erro e cria o banco de dados por demanda.
+     * 
+     * @param string $msg
+     */
+    public static function BDCREATE($msg) {
+
+        if (strpos($msg, "ws_categories") || strpos($msg, "ws_posts") || strpos($msg, "ws_posts_gallery") || strpos($msg, "ws_siteviews") || strpos($msg, "ws_siteviews_agent") || strpos($msg, "ws_siteviews_online") || strpos($msg, "ws_users")):
+            $tab = 'framework';
+        elseif (strpos($msg, "app_youtube")):
+            $tab = 'aplicacao';
+        elseif (strpos($msg, "app_cidades")):
+            $tab = 'cidades';
+        elseif (strpos($msg, "app_estados")):
+            $tab = 'estados';
+        elseif (strpos($msg, "app_cidades")):
+            $tab = 'cidades';
+        endif;
+
+        if (!empty($tab)):
+            $file = file_get_contents( HOME . "/createbd/{$tab}.sql");
+            try {
+                $stmt = Conn::prepare($file);
+                $stmt->execute();
+            } catch (Exception $ex) {
+                WSErro("Erro ao criar banco de dados [{$ex}]", WS_ERROR);
+            }
+        endif;
+    }
 }

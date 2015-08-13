@@ -4,7 +4,7 @@
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "root");
-define("DB_NAME", "wsphp");
+define("DB_NAME", "ciddhc");
 
 //AUTO LOAD DE CALSSES ####################
 function __autoload($Class_name) {
@@ -78,22 +78,22 @@ function WSErro($ErrMsg, $ErrNo, $ErrDie = null) {
 function PHPErro($ErrNo, $ErrMsg, $ErrFile, $ErrLine) {
     $start = explode("SQLSTATE[42S02]", $ErrMsg);
     if (!empty($start[1])):
-        CreateBD::CreateTable();
+        Check::BDCREATE($ErrMsg);
         echo "<div style='margin: 10px; padding: 15px; font-size: 1.2em; text-aling: center; color: #fff;' class=" . DANGER . ">";
         echo "<p><strong>ERRO:</strong></p>";
         echo "<p>Tivemos um pequeno problema tecnico, mas já estamos consertando para você!</p>";
         echo "<small>Por favor, atualize a pagina!</small>";
         echo "</div>";
-    else:
-        $CssClass = ($ErrNo == E_USER_NOTICE ? WS_INFOR : ($ErrNo == E_USER_WARNING ? WS_ALERT : ($ErrNo == E_USER_ERROR ? WS_ERROR : $ErrNo)));
-        echo "<p class=\"trigger {$CssClass}\">";
-        echo "<b>Erro na Linha: {$ErrLine} ::</b> {$ErrMsg} <br>";
-        echo "<small>{$ErrFile}</small>";
-        echo "<span class=\"ajax_close\">{$ErrMsg}</span></p>";
+    endif;
+    
+    $CssClass = ($ErrNo == E_USER_NOTICE ? WS_INFOR : ($ErrNo == E_USER_WARNING ? WS_ALERT : ($ErrNo == E_USER_ERROR ? WS_ERROR : $ErrNo)));
+    echo "<p class=\"trigger {$CssClass}\">";
+    echo "<b>Erro na Linha: {$ErrLine} ::</b> {$ErrMsg} <br>";
+    echo "<small>{$ErrFile}</small>";
+    echo "<span class=\"ajax_close\">{$ErrMsg}</span></p>";
 
-        if ($ErrNo == E_USER_ERROR):
-            die;
-        endif;
+    if ($ErrNo == E_USER_ERROR):
+        die;
     endif;
 }
 

@@ -72,20 +72,33 @@
             <a class="btn btn-site">Canal do Youtube</a>
         </div>
 
-        <div class="row">
-            <div class="col-md-5">
+        <section class="section">
+            <div style="margin-top: 10px;" class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/U317keQNZfA"
+                            allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div style="margin-top: 10px;" class="col-md-5">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/i__1Z5a9Sak"
                             allowfullscreen=""></iframe>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div style="margin-top: 10px;" class="col-md-5">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/i__1Z5a9Sak"
                             allowfullscreen=""></iframe>
                 </div>
             </div>
-        </div>
+            <div style="margin-top: 10px;" class="col-md-5">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/i__1Z5a9Sak"
+                            allowfullscreen=""></iframe>
+                </div>
+                <time datetime="2015-02-02" pubdate=""></time>
+            </div>
+        </section>
     </div>
     <!-- Canal do youtube -->
 

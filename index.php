@@ -10,8 +10,7 @@ $Session = new Session;
         <?php
         $Link = new Link;
         $Link->getTags();
-        ?>
-        
+        ?>        
     </head>
     
     <body>

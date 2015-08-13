@@ -156,14 +156,14 @@ class Seo {
         $this->seoTags .= "\n";
 
         //SCRIPTS
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/jquery.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/bootstrap.mim.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/jcycle.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/jmask.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/combo.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/menus.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/_plugins.conf.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"<?= HOME ?>/_cdn/_scripts.conf.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jquery.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/bootstrap.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jcycle.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jmask.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/combo.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/menus.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_plugins.conf.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_scripts.conf.js\"></script>" . "\n";
         $this->seoTags .= "\n";    
         
         //ICONES

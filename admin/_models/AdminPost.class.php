@@ -37,6 +37,7 @@ class AdminPost {
             $this->setData();
             $this->setName();
             $this->UpdateImage();
+            $this->ExeUpdate($PostId, $Data);
         endif;
     }
 
