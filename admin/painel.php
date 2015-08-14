@@ -69,6 +69,13 @@ endif;
                             </ul>
                         </li>
 
+                        <li class="li<?php if (in_array('categories', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Categorias</a>
+                            <ul class="sub">
+                                <li><a href="painel.php?exe=categories/create">Criar Categoria</a></li>
+                                <li><a href="painel.php?exe=categories/index">Listar / Editar Categorias</a></li>
+                            </ul>
+                        </li> 
+                        
                         <li class="li<?php if (in_array('youtube', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Videos Youtube</a>
                             <ul class="sub">
                                 <li><a href="painel.php?exe=youtube/create">Criar Categoria</a></li>
@@ -76,13 +83,20 @@ endif;
                             </ul>
                         </li> 
 
-                        <li class="li<?php if (in_array('categories', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Categorias</a>
+                        <li class="li<?php if (in_array('membros', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Membros</a>
                             <ul class="sub">
-                                <li><a href="painel.php?exe=categories/create">Criar Categoria</a></li>
-                                <li><a href="painel.php?exe=categories/index">Listar / Editar Categorias</a></li>
+                                <li><a href="painel.php?exe=membros/create">Criar Membros</a></li>
+                                <li><a href="painel.php?exe=membros/index">Listar / Editar Membros</a></li>
                             </ul>
-                        </li> 
-
+                        </li>
+                        
+                        <li class="li<?php if (in_array('cartilhas', $linkto)) echo ' active'; ?>"><a class="opensub" onclick="return false;" href="#">Cartilhas</a>
+                            <ul class="sub">
+                                <li><a href="painel.php?exe=cartilhas/create">Criar Cartilhas</a></li>
+                                <li><a href="painel.php?exe=cartilhas/index">Listar / Editar Cartilhas</a></li>
+                            </ul>
+                        </li>
+                        
                         <!-- adicionar novas categorias aqui-->
 
                         <li class="li"><a href="../" target="_blank" class="opensub">Ver Site</a></li>

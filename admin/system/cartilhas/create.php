@@ -3,7 +3,7 @@
     <article>
 
         <header>
-            <h1>Criar Post:</h1>
+            <h1>Criar Cartilhas:</h1>
         </header>
 
         <?php
@@ -11,11 +11,12 @@
         if (isset($post) && $post['SendPostForm']):
             $post['post_status'] = ( $post['SendPostForm'] == 'Cadastrar' ? '0' : '1');
             $post['post_cover'] = ( $_FILES['post_cover']['tmp_name'] ? $_FILES['post_cover'] : null);
-            $post['post_type'] = 'post';
+            $post['post_type'] = 'catilhas';
             unset($post['SendPostForm']);
             
             require '_models/AdminPost.class.php';
             $cadastra = new AdminPost();
+            
             $cadastra->ExeCreate($post);
 
             if ($cadastra->getResult()):
@@ -24,7 +25,7 @@
                     $sendGallery->gbSend($_FILES['gallery_covers'], $cadastra->getResult());
                 endif;
                 
-                header('Location: painel.php?exe=posts/update&create=true&postId=' . $cadastra->getResult());
+                header('Location: painel.php?exe=cartilhas/update&create=true&postId=' . $cadastra->getResult());
             else:
                 WSErro($cadastra->getError()[0], $cadastra->getError()[1]);
             endif;

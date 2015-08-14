@@ -16,7 +16,7 @@ Folha de estilo para alterações especificas
 .bloco{margin: 10px;}
 .row{margin-top: 10px;}
 .lateral{margin-top: 50px;}
-.corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;}
+.corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;min-height: 800px;}
 .bg-color-branco{background: #fff;}
 .bg-color-fundo{background: #d2daea;}
 .bg-color-rosa{background: #f23dff;}

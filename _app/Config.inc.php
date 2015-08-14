@@ -28,6 +28,9 @@ function __autoload($Class_name) {
 
 //DEFINE SERVIDOR DE E-MAIL ####################
 define('MAILUSER', 'adriano@tommasi.com.br');
+define('MAILDESTINO', 'adriano@tommasi.com.br'); 
+define('MAILNAME', 'CIDDHC - SITE'); 
+define('MAILASSUNTO', 'Mensagem via Site!');
 define('MAILHOST', 'mail.ita.locaweb.com.br');
 define('MAILPASS', 'tommasi0000');
 define('MAILPORT', '587');

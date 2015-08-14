@@ -46,6 +46,9 @@ class Email {
         $this->Data = $Data;
         $this->Clear();
 
+        $nome = $this->Data['RemetenteNome'];
+        unset($this->Data['RemetenteNome']);
+        
         if (in_array('', $this->Data)):
             $this->Error = ['Erro ao enviar mensagem: Para enviar esse e-mail. Preencha os campos requisitados!', WS_ALERT];
             $this->Result = false;
@@ -53,6 +56,7 @@ class Email {
             $this->Error = ['Erro ao enviar mensagem: O e-mail que você informou não tem um formato válido. Informe seu e-mail!!', WS_ALERT];
             $this->Result = false;
         else:
+            $this->Data['RemetenteNome'] = $nome;
             $this->setMail();
             $this->Config();
             $this->sendMail();

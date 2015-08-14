@@ -2,12 +2,12 @@
 
     <section>
 
-        <h1>Posts:</h1>
+        <h1>Cartilhas:</h1>
 
         <?php
         $empty = filter_input(INPUT_GET, 'empty', FILTER_VALIDATE_BOOLEAN);
         if ($empty):
-            WSErro("Oppss: você tentou editar um post que não existe no sistema!", WS_INFOR);
+            WSErro("Oppss: você tentou editar uma cartilha que não existe no sistema!", WS_INFOR);
         endif;
 
         $action = filter_input(INPUT_GET, 'action', FILTER_DEFAULT);
@@ -20,17 +20,17 @@
             switch ($action):
                 case 'active':
                     $postUpdate->ExeStatus($postAction, '1');
-                    WSErro("O status do post foi atualizado para <b>ativo</b>. Post publicado!", WS_ACCEPT);
+                    WSErro("O status da cartilha foi atualizado para <b>ativo</b>. Post publicado!", WS_ACCEPT);
                     break;
 
                 case 'inative':
                     $postUpdate->ExeStatus($postAction, '0');
-                    WSErro("O status do post foi atualizado para <b>inativo</b>. Post agora é um rascunho!", WS_ACCEPT);
+                    WSErro("O status da cartilha foi atualizado para <b>inativo</b>. Post agora é um rascunho!", WS_ACCEPT);
                     break;
 
                 case 'delete':
                     $postUpdate->ExeDelete($postAction);
-                    WSErro('O post ' . $postUpdate->getError()[0], $postUpdate->getError()[1]);
+                    WSErro('A cartilha ' . $postUpdate->getError()[0], $postUpdate->getError()[1]);
 
                     break;
 
@@ -42,11 +42,11 @@
 
         $posti = 0;
         $getPage = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
-        $Pager = new Pager("painel.php?exe=posts/index&page=");
+        $Pager = new Pager("painel.php?exe=cartilhas/index&page=");
         $Pager->ExePager($getPage, 5);
 
         $Read = new Controle();
-        $Read->FullRead("SELECT * FROM ws_posts WHERE post_type = 'post' ORDER by post_status ASC, post_date DESC LIMIT :limit OFFSET :offset", "limit={$Pager->getLimit()}&offset={$Pager->getOffset()}", true);
+        $Read->FullRead("SELECT * FROM ws_posts WHERE post_type = 'cartilhas' ORDER by post_status ASC, post_date DESC LIMIT :limit OFFSET :offset", "limit={$Pager->getLimit()}&offset={$Pager->getOffset()}", true);
 
         if ($Read->getResult()):
             foreach ($Read->getResult() as $post):
@@ -64,15 +64,15 @@
                     <ul class="info post_actions">
                         <li><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($post_date)); ?>Hs</li>
                         <li><a class="act_view" target="_blank" href="../artigo/<?= $post_name; ?>" title="Ver no site">Ver no site</a></li>
-                        <li><a class="act_edit" href="painel.php?exe=posts/update&postId=<?= $post_id; ?>" title="Editar">Editar</a></li>
+                        <li><a class="act_edit" href="painel.php?exe=cartilhas/update&postId=<?= $post_id; ?>" title="Editar">Editar</a></li>
 
                         <?php if (!$post_status): ?>
-                            <li><a class="act_ative" href="painel.php?exe=posts/index&post=<?= $post_id; ?>&action=active" title="Ativar">Ativar</a></li>
+                            <li><a class="act_ative" href="painel.php?exe=cartilhas/index&post=<?= $post_id; ?>&action=active" title="Ativar">Ativar</a></li>
                         <?php else: ?>
-                            <li><a class="act_inative" href="painel.php?exe=posts/index&post=<?= $post_id; ?>&action=inative" title="Inativar">Inativar</a></li>
+                            <li><a class="act_inative" href="painel.php?exe=cartilhas/index&post=<?= $post_id; ?>&action=inative" title="Inativar">Inativar</a></li>
                         <?php endif; ?>
 
-                        <li><a class="act_delete" href="painel.php?exe=posts/index&post=<?= $post_id; ?>&action=delete" title="Excluir">Deletar</a></li>
+                        <li><a class="act_delete" href="painel.php?exe=cartilhas/index&post=<?= $post_id; ?>&action=delete" title="Excluir">Deletar</a></li>
                     </ul>
 
                 </article>

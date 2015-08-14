@@ -24,6 +24,7 @@ class AdminPost {
             $this->setName();
             $this->CreateImage();
         endif;
+        $this->Data = null;
     }
 
     public function ExeUpdate($PostId, array $Data) {
@@ -37,7 +38,8 @@ class AdminPost {
             $this->setData();
             $this->setName();
             $this->UpdateImage();
-            $this->ExeUpdate($PostId, $Data);
+            $this->ExeStatus($PostId, $Data['post_status']);
+            $this->Data = null;
         endif;
     }
 
@@ -61,16 +63,17 @@ class AdminPost {
             $ReadPost->setPost_id($this->Post);
             $ReadPost->Execute()->delete();
 
-            $this->Error = ["O post <b>{$PostDelete->post_title}</b> foi removido com sucesso do sistema!", WS_ACCEPT];
+            $this->Error = ["<b>{$PostDelete->post_title}</b> foi removido com sucesso do sistema!", WS_ACCEPT];
         endif;
     }
 
     public function ExeStatus($PostId, $PostStatus) {
+        $this->Data = null;
         $this->Post = (int) $PostId;
         $this->Data['post_status'] = (string) $PostStatus;
-
-        $Read = new Controle('ws_posts');
         $this->Data['post_id'] = $this->Post;
+        
+        $Read = new Controle('ws_posts');
         $Read->update($this->Data, "post_id");
     }
 
@@ -201,6 +204,7 @@ class AdminPost {
     }
 
     private function UpdateImage() {
+
         if (is_array($this->Data['post_cover'])):
             $WsPosts = new WsPosts;
             $WsPosts->setPost_id($this->Post);
@@ -234,9 +238,8 @@ class AdminPost {
 
         $this->Data['post_name'] = Check::Name($this->Data['post_title']);
         $this->Data['post_date'] = Check::Data($this->Data['post_date']);
-        $this->Data['post_type'] = 'post';
 
-        $this->Data['post_cover'] = $Cover;
+        $this->Data['post_cover'] = ($Cover != 'null' ? $Cover : null);
         $this->Data['post_content'] = $Content;
 
         $this->Data['post_cat_parent'] = $this->getCatParent();
@@ -282,7 +285,7 @@ class AdminPost {
         $this->Data['post_last_views'] = null;
         $this->Data['post_id'] = $this->Post;
         $this->Data['post_date'] = date('Y-m-d H:i:s');
-        $this->Data['post_cover'] = ( isset($this->Data['post_cover']) ? $this->Data['post_cover'] : null);
+        $this->Data['post_cover'] = (!empty($this->Data['post_cover']) ? $this->Data['post_cover'] : null);
 
         $WsPosts->setThis((object) $this->Data);
         $result = $WsPosts->Execute()->update(null, 'post_id');

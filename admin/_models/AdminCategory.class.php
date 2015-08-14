@@ -151,9 +151,9 @@ class AdminCategory {
     //Atualiza Categoria
     private function Update() {
         $this->Data['category_id'] = $this->CatId;
-        $this->Read->setThis((object) $this->Data);
-        $update = $this->Read->Execute()->update(null, 'category_id');
-        $this->Messagem("atualizada", $this->Read->Execute()->MaxFild('category_id'), $update);
+        $this->Read = new Controle('ws_categories');
+        $update = $this->Read->update($this->Data, 'category_id');
+        $this->Messagem("atualizada", $this->Read->MaxFild('category_id'), $update);
     }
 
     private function Messagem($Action, $Return, $Criterio) {
