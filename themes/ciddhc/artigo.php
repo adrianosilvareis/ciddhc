@@ -39,7 +39,7 @@ endif;
                         <hgroup>
                             <h3>
                                 GALERIA:
-                                <p class="tagline">Veja fotos em <mark><?= $post_title; ?></mark></p>
+                                <p> <small>Veja fotos em:</small> <?= $post_title; ?></p>
                             </h3>
                         </hgroup>
 
@@ -99,7 +99,7 @@ endif;
         </div><!--art content-->
 
         <!--SIDEBAR-->
-        <?php require(REQUIRE_PATH . '/inc/sidebar.inc.php'); ?>
+        <?php // require(REQUIRE_PATH . '/inc/sidebar.inc.php'); ?>
 
         <div class="clear"></div>
     </article>

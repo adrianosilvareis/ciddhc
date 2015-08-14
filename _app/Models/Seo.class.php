@@ -162,8 +162,10 @@ class Seo {
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jmask.js\"></script>" . "\n";
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/combo.js\"></script>" . "\n";
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/menus.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/shadowbox/shadowbox.js\"></script>" . "\n";
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_plugins.conf.js\"></script>" . "\n";
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_scripts.conf.js\"></script>" . "\n";
+        $this->seoTags .= "<link href='" . HOME . "/_cdn/shadowbox/shadowbox.css' rel='stylesheet' type='text/css' >" . "\n";
         $this->seoTags .= "\n";    
         
         //ICONES
@@ -194,7 +196,15 @@ class Seo {
 
         //DEFAULT CSS Alterações importantes de ajustes
         $this->seoTags .= "<link href='{$thema}/css/default.css' rel='stylesheet' type='text/css' >" . "\n";
+        $this->seoTags .= "<link href='{$thema}/css/estilo.css' rel='stylesheet' type='text/css' >" . "\n";
+        $this->seoTags .= "<link href='{$thema}/css/reset.css' rel='stylesheet' type='text/css' >" . "\n";
+        
+        //API GOOGLE
+        $this->seoTags .= "<link href='http://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>";
 
+        
+        
+                
         $this->Tags = null;
     }
 
