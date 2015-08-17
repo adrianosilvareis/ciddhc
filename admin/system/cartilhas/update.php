@@ -26,6 +26,11 @@
                 $sendGallery = new AdminPost();
                 $sendGallery->gbSend($_FILES['gallery_covers'], $postid);
             endif;
+
+            if (!empty($_FILES['files']['tmp_name'])):
+                $sendFiles = new AdminPost;
+                $sendFiles->flSend($_FILES['files'], $postid);
+            endif;
         else:
             $WsPosts = new WsPosts;
             $WsPosts->setPost_id($postid);
@@ -167,13 +172,54 @@
                                 <div class="img thumb_small">
                                     <?= Check::Image('../uploads/' . $gb->gallery_image, $gbi, 146, 100); ?>
                                 </div>  
-                                <a href="painel.php?exe=posts/update&postId=<?= $postid; ?>&gbdel=<?= $gb->gallery_id; ?>#gbfoco" class="del">Deletar</a>
+                                <a href="painel.php?exe=cartilhas/update&postId=<?= $postid; ?>&gbdel=<?= $gb->gallery_id; ?>#gbfoco" class="del">Deletar</a>
                             </li>
                             <?php
                         endforeach;
                     endif;
                     ?>
-                </ul>                
+                </ul>   
+            </div>
+
+            <div class="label gbform">
+                <label class="label">
+                    <span class="field">Enviar Arquivos:</span>
+                    <input type="file" multiple name="files[]" />
+                </label>
+
+                <?php
+                $delfl = filter_input(INPUT_GET, 'fldel', FILTER_VALIDATE_INT);
+                if ($delfl):
+                    require_once '_models/AdminPost.class.php';
+                    $DellGallery = new AdminPost();
+                    $DellGallery->flRemove($delfl);
+
+                    WSErro($DellGallery->getError()[0], $DellGallery->getError()[1]);
+                endif;
+                ?>               
+
+                <ul class="gallery">
+                    <?php
+                    $gbi = 0;
+                    $Files = new WsPostsFile();
+                    $Files->setPost_id($postid);
+                    $Files->Execute()->Query("#post_id#");
+
+                    if ($Files->Execute()->getResult()):
+                        foreach ($Files->Execute()->getResult() as $gb):
+                            $gbi++;
+                            ?>
+                            <li<?php if ($gbi % 5 == 0) echo ' class="right"'; ?>>
+                                <div class="link">
+                                    <a href="../uploads/<?= $gb->file_url; ?>" ><?= $gb->file_name; ?></a>
+                                </div>
+                                <a href="painel.php?exe=cartilhas/update&postId=<?= $postid; ?>&fldel=<?= $gb->file_id; ?>#gbfoco" class="del">Deletar</a>
+                            </li>
+                            <?php
+                        endforeach;
+                    endif;
+                    ?>
+                </ul>   
             </div>
 
             <input type="submit" class="btn blue" value="Atualizar" name="SendPostForm" />

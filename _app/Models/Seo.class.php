@@ -117,6 +117,11 @@ class Seo {
                 $this->Data = [SITENAME . ' - Parceiros da causa.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
                 break;
 
+            //SEO:: institucional
+            case 'institucional':
+                $this->Data = [SITENAME . ' - Institucional.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
+                break;
+
             //SEO:: INDEX
             case 'index':
                 $this->Data = [SITENAME . ' - ' . SITEDESC, SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];

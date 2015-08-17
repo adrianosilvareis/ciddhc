@@ -56,9 +56,10 @@ class AdminPost {
         else:
             $PostDelete = $ReadPost->Execute()->getResult();
 
-            $this->deletaImagem('../uploads/' . $PostDelete->post_cover);
+            $this->deletaArquivo('../uploads/' . $PostDelete->post_cover);
 
             $this->deletaGallery();
+            $this->deletaFiles();
 
             $ReadPost->setPost_id($this->Post);
             $ReadPost->Execute()->delete();
@@ -72,7 +73,7 @@ class AdminPost {
         $this->Post = (int) $PostId;
         $this->Data['post_status'] = (string) $PostStatus;
         $this->Data['post_id'] = $this->Post;
-        
+
         $Read = new Controle('ws_posts');
         $Read->update($this->Data, "post_id");
     }
@@ -95,6 +96,40 @@ class AdminPost {
         endif;
     }
 
+    public function flSend(array $File, $PostId) {
+        $this->Post = $PostId;
+        $this->Data = $File;
+
+        $FileName = new WsPosts;
+        $FileName->setPost_id($this->Post);
+        $FileName->Execute()->find();
+        if (!$FileName->Execute()->getResult()):
+            $this->Error = ["Erro ao enviar arquivo. O índice {$this->Post} não foi encontrado no banco!", WS_ERROR];
+            $this->Result = false;
+        else:
+            $gbCount = count($this->Data['tmp_name']);
+            $gbKeys = array_keys($this->Data);
+            $gbFiles = $this->setFiles($gbCount, $gbKeys);
+            $this->setArquivos($FileName->Execute()->getResult(), $gbFiles);
+        endif;
+    }
+
+    public function flRemove($fileId) {
+        $this->Post = (int) $fileId;
+        $ReadGb = new WsPostsFile();
+        $ReadGb->setFile_id($this->Post);
+        $result = $ReadGb->Execute()->find();
+        if ($result):
+            $File = '../uploads/' . $result->file_url;
+            $this->deletaArquivo($File);
+            $deleta = $ReadGb->Execute()->delete();
+            if ($deleta):
+                $this->Error = ["O arquivo foi removido com sucesso da galeria!", WS_ACCEPT];
+                $this->Result = true;
+            endif;
+        endif;
+    }
+
     public function gbRemove($GbImageId) {
         $this->Post = (int) $GbImageId;
         $ReadGb = new WsPostsGallery();
@@ -102,7 +137,7 @@ class AdminPost {
         $result = $ReadGb->Execute()->find();
         if ($result):
             $Imagem = '../uploads/' . $result->gallery_image;
-            $this->deletaImagem($Imagem);
+            $this->deletaArquivo($Imagem);
             $deleta = $ReadGb->Execute()->delete();
             if ($deleta):
                 $this->Error = ["A Imagem foi removida com sucesso da galeria!", WS_ACCEPT];
@@ -124,9 +159,9 @@ class AdminPost {
      * *************** PRIVATES ***************
      * ****************************************
      */
-    private function deletaImagem($UrlImagem) {
-        if (file_exists($UrlImagem) && !is_dir($UrlImagem)):
-            unlink($UrlImagem);
+    private function deletaArquivo($Url) {
+        if (file_exists($Url) && !is_dir($Url)):
+            unlink($Url);
         endif;
     }
 
@@ -136,12 +171,26 @@ class AdminPost {
         $ReadGallery->Execute()->Query("#post_id#");
         if ($ReadGallery->Execute()->getResult()):
             foreach ($ReadGallery->Execute()->getResult() as $gbdel):
-                $this->deletaImagem('../uploads/' . $gbdel->gallery_image);
+                $this->deletaArquivo('../uploads/' . $gbdel->gallery_image);
             endforeach;
         endif;
 
         $ReadGallery->setPost_id($this->Post);
         $ReadGallery->Execute()->delete(null, "post_id = :post_id");
+    }
+
+    private function deletaFiles() {
+        $Read = new WsPostsFile();
+        $Read->setPost_id($this->Post);
+        $Read->Execute()->Query("#post_id#");
+        if ($Read->Execute()->getResult()):
+            foreach ($Read->Execute()->getResult() as $gbdel):
+                $this->deletaArquivo('../uploads/' . $gbdel->file_url);
+            endforeach;
+        endif;
+
+        $Read->setPost_id($this->Post);
+        $Read->Execute()->delete(null, "post_id = :post_id");
     }
 
     private function setGallery($result, $gbFiles) {
@@ -168,10 +217,35 @@ class AdminPost {
         $this->GalleryMessage($u);
     }
 
+    private function setArquivos($result, $gbFiles) {
+        $ImageName = $result->post_name;
+        $flSend = new Upload();
+
+        $i = 0;
+        $u = 0;
+        foreach ($gbFiles as $gbUploads):
+            $FileName = "{$ImageName}-fl-{$this->Post}-" . (substr(md5(time() + $i), 0, 5));
+            $flSend->File($gbUploads, $FileName);
+
+            if ($flSend->getResult()):
+                $File = $flSend->getResult();
+                $gbCreate = new WsPostsFile();
+                $gbCreate->setPost_id($this->Post);
+                $gbCreate->setFile_url($File);
+                $gbCreate->setFile_date(date("Y/m/d H:i:s"));
+                $gbCreate->setFile_name($gbUploads['name']);
+                $gbCreate->Execute()->insert();
+                $u++;
+            endif;
+            $i++;
+        endforeach;
+        $this->GalleryMessage($u);
+    }
+
     private function GalleryMessage($uploadNumber) {
         if ($uploadNumber > 1):
             $this->Result = true;
-            $this->Error = ["Galeria Atualizada: Foram enviadas <b>{$uploadNumber}</b> imagens para galeria deste post!", WS_ACCEPT];
+            $this->Error = ["Galeria Atualizada: Foi enviado <b>{$uploadNumber}</b> arquivos para galeria deste post!", WS_ACCEPT];
         endif;
     }
 
@@ -210,7 +284,7 @@ class AdminPost {
             $WsPosts->setPost_id($this->Post);
             $WsPosts->Execute()->find();
 
-            $this->deletaImagem('../uploads/' . $WsPosts->Execute()->getResult()->post_cover);
+            $this->deletaArquivo('../uploads/' . $WsPosts->Execute()->getResult()->post_cover);
 
             $upload = new Upload;
             $upload->Image($this->Data['post_cover'], $this->Data['post_name']);

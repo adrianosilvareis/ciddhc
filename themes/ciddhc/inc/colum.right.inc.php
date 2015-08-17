@@ -5,7 +5,7 @@
     $Read->Execute()->Query("post_status = 1 AND post_type = 'post' AND (post_cat_parent = :cat OR post_category = :cat) ORDER BY post_date DESC LIMIT :limit OFFSET :offset", "cat={$cat}&limit=2&offset=0", true);
     if (!$Read->Execute()->getResult()):
         echo "<div style='display: block;margin-top:40px;'>\n";
-        WSErro("Desculpe, não temos cartilhas no momento, favor volte mais tarde!", WS_INFOR);
+        WSErro("Desculpe, não temos posts no momento, favor volte mais tarde!", WS_INFOR);
         echo "</div>\n";
     else:
         foreach ($Read->Execute()->getResult() as $row):

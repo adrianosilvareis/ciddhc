@@ -9,11 +9,11 @@ endif;
 <div class="site-container">
 
     <article class="page_article">
-    <!--<article>-->
+        <!--<article>-->
 
 
         <div class="art_content">
-        <!--<div>-->
+            <!--<div>-->
 
             <!--CABEÇALHO GERAL-->
             <header>
@@ -26,10 +26,38 @@ endif;
                 </hgroup>
             </header>
 
-
             <!--CONTEUDO-->
             <div class="htmlchars">
                 <?= $post_content; ?>
+                <!--ARQUIVOS-->
+                <?php
+                $Files = new WsPostsFile();
+                $Files->setPost_id($post_id);
+                $Files->Execute()->Query("#post_id# ORDER BY file_date DESC");
+                if ($Files->Execute()->getResult()):
+                    ?>
+                    <section class="section">
+                        <hgroup>
+                            <h3>Links para Downloads:</h3>
+                        </hgroup>
+                        <ul>
+                            <?php
+                            foreach ($Files->Execute()->getResult() as $file):
+                                extract((array) $file);
+                                ?>
+                                <li>
+                                    <a href=href="<?= HOME ?>/uploads/<?= $file_url; ?>"><?= $file_name; ?></a> 
+                                </li>
+                                <?php
+                            endforeach;
+                            ?>
+                        </ul>
+                    </section>
+                    <?php
+                endif;
+                ?>
+
+
                 <!--GALERIA-->
                 <?php
                 $ReadGb = new WsPostsGallery;
@@ -101,7 +129,7 @@ endif;
         </div><!--art content-->
 
         <!--SIDEBAR-->
-        <?php // require(REQUIRE_PATH . '/inc/sidebar.inc.php'); ?>
+        <?php // require(REQUIRE_PATH . '/inc/sidebar.inc.php');  ?>
 
         <div class="clear"></div>
     </article>

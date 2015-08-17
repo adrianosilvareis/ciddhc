@@ -25,6 +25,11 @@
                     $sendGallery->gbSend($_FILES['gallery_covers'], $cadastra->getResult());
                 endif;
                 
+                if (!empty($_FILES['files']['tmp_name'])):
+                    $sendFiles = new AdminPost;
+                    $sendFiles->flSend($_FILES['files'], $cadastra->getResult());
+                endif;
+                
                 header('Location: painel.php?exe=cartilhas/update&create=true&postId=' . $cadastra->getResult());
             else:
                 WSErro($cadastra->getError()[0], $cadastra->getError()[1]);
@@ -121,6 +126,13 @@
                     <span class="field">Enviar Galeria:</span>
                     <input type="file" multiple name="gallery_covers[]" />
                 </label>           
+            </div>
+
+            <div class="label gbform">
+                <label class="label">
+                    <span class="field">Enviar Arquivos:</span>
+                    <input type="file" multiple name="files[]" />
+                </label>
             </div>
 
             <input type="submit" class="btn blue" value="Cadastrar" name="SendPostForm" />

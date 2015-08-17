@@ -3,7 +3,7 @@
     <article>
 
         <header>
-            <h1>Criar Post:</h1>
+            <h1>Criar Membros:</h1>
         </header>
 
         <?php

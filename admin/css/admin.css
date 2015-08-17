@@ -172,6 +172,8 @@ body.painel{background: url(../images/header_bg.png) repeat-x #fbfbfb;}
 .form_create article form .gallery li .del{position: absolute; background: #900; right: 10px; bottom: 10px; width: 20px; height: 20px;}
 .form_create article form .gallery li .del{text-transform: uppercase; color: #fff; font-size: 0; background: url(../icons/logout.png) center center no-repeat; background-size: 80%;}
 .form_create article form .gallery li .del:hover{background-color: red}
+.link{font-size: 0.8em; color: black; padding-right: 25px;}
+.link:hover{font-size: 0.8em; color: #0000ff; background: #c8dbfd; padding-right: 25px;}
 
 /*LISTA CONTENT*/
 .list_content h1{margin-bottom: 10px;}
