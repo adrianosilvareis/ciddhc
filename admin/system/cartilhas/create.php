@@ -11,7 +11,7 @@
         if (isset($post) && $post['SendPostForm']):
             $post['post_status'] = ( $post['SendPostForm'] == 'Cadastrar' ? '0' : '1');
             $post['post_cover'] = ( $_FILES['post_cover']['tmp_name'] ? $_FILES['post_cover'] : null);
-            $post['post_type'] = 'catilhas';
+            $post['post_type'] = 'cartilhas';
             unset($post['SendPostForm']);
             
             require '_models/AdminPost.class.php';

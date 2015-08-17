@@ -24,10 +24,6 @@ Folha de estilo para alterações especificas
 .divbloco{height: 10px; margin: 10px;}
 .btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}
 .header{margin-bottom: 10px;}
-.noticias {padding: 0 !important;margin: 0 !important;}
-.noticias h1 {font-size: 1.4em; margin: 0 !important;}
-.noticias p {font-size: 0.9em;}
-.noticias time {font-size: 0.8em; color: #999;}
 
 /*Ao imprimir*/
 @media print{

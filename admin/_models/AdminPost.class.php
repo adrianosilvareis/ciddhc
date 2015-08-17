@@ -135,7 +135,7 @@ class AdminPost {
         $ReadGallery->setPost_id($this->Post);
         $ReadGallery->Execute()->Query("#post_id#");
         if ($ReadGallery->Execute()->getResult()):
-            foreach ($ReadGallery->getResult() as $gbdel):
+            foreach ($ReadGallery->Execute()->getResult() as $gbdel):
                 $this->deletaImagem('../uploads/' . $gbdel->gallery_image);
             endforeach;
         endif;

@@ -1,3 +1,10 @@
+<?php
+$View = new View();
+$carousel = $View->Load("carousel_m");
+$cartilha = $View->Load("cartilhas_m");
+$tpl_p = $View->Load("article_p");
+$tpl_m = $View->Load("article_m");
+?>
 <section>
     <!-- carrousel -->
     <div class="row">
@@ -6,63 +13,56 @@
             <div id="fullcarousel-example" data-interval="4000" class="carousel slide"
                  data-ride="carousel">
 
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#fullcarousel-example" data-slide-to="0" class="active"></li>
-                    <li data-target="#fullcarousel-example" data-slide-to="1"></li>
-                    <li data-target="#fullcarousel-example" data-slide-to="2"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <img src="<?= HOME . '/themes/' . THEME ?>/images/post/entrega-diploma.jpg" class="img-responsive">
-                            </div>
-
-                            <header>
-                                <h2><a href="#">CERIMÔNIA DE ENTREGA DE DIPLOMAS</a></h2>
-                                <h3>CURSO DE DEFESA DOS DIREITOS HUMANOS, REALIZADO PELA CIDDHC-ES NA CIDADE DE SÃO GABRIEL DA PALHA</h3>
-                                <time datetime="2015-06-27" pubdate="">27/06/2015</time>
-                            </header>
-                        </div>
+                <?php
+                $cat = Check::CatByName('destaque');
+                $Read = new WsPosts();
+                $Read->Execute()->Query("post_status = 1 AND post_type = 'post' AND (post_cat_parent = :cat OR post_category = :cat) ORDER BY post_date DESC LIMIT :limit OFFSET :offset", "cat={$cat}&limit=3&offset=0", true);
+                if (!$Read->Execute()->getResult()):
+                    WSErro("Desculpe não temos posts no momento, favor volte mais tarde!", WS_INFOR);
+                else:
+                    ?>
+                    <!-- Indicators -->
+                    <?php if ($Read->Execute()->getRowCount() > 1): ?>                         
+                        <ol class="carousel-indicators">
+                            <?php
+                            $i = 0;
+                            foreach ($Read->Execute()->getResult() as $ind):
+                                $class = ($i == 0 ? "active" : "");
+                                echo "<li data-target='#fullcarousel-example' data-slide-to='{$i}' class='{$class}'></li>" . "\n";
+                                $i++;
+                            endforeach;
+                            ?>
+                        </ol>
+                    <?php endif; ?>
+                    <!--itens-->
+                    <div class="carousel-inner">
+                        <?php
+                        $i = 0;
+                        foreach ($Read->Execute()->getResult() as $item):
+                            $item->post_title = Check::Words($item->post_title, 12);
+                            $item->post_content = Check::Words($item->post_content, 38);
+                            $item->datetime = date('Y-m-d', strtotime($item->post_date));
+                            $item->pubdate = date("d/m/Y H:i", strtotime($item->post_date));
+                            $item->class = ($i == 0 ? "item active" : "item");
+                            $View->Show((array) $item, $carousel);
+                            $i++;
+                        endforeach;
+                        ?>
                     </div>
-
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <img src="<?= HOME . '/themes/' . THEME ?>/images/post/entrega-diploma2.jpg" class="img-responsive">
-                            </div>
-
-                            <header>
-                                <h2><a href="#">Comissão Interestadual de Defesa dos Direitos Humanos e Cidadania</a></h2>
-                                <time datetime="2015-06-27" pubdate="">27/06/2015</time>
-                            </header>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <img src="<?= HOME . '/themes/' . THEME ?>/images/post/maria-da-penha.jpg"  class="img-responsive">
-                            </div>
-
-                            <header>
-                                <h2><a href="#">Lei Maria da Penha</a></h2>
-                                <h3>Juizado Itinerante da Lei Maria da Penha vai atender às mulheres vítimas de violência doméstica de Baixo Guandu</h3>
-                                <p>De hoje até sexta-feira, o Juizado Itinerante da Lei Maria da Penha vai atender às mulheres vítimas de violência doméstica de Baixo Guandu, no noroeste do Estado. No ônibus, onde funciona o juizado, podem ser feitos Boletins de Ocorrência (BO), assistência jurídica...</p>
-                                <time datetime="2015-02-02" pubdate="">02/06/2015</time>
-                            </header>
-                        </div>
-                    </div>
-
+                    <?php
+                    if ($Read->Execute()->getRowCount() > 1):
+                        echo "<a class='left carousel-control' href='#fullcarousel-example' data-slide='prev'><i class='icon-prev fa fa-angle-left'></i></a>" . "\n";
+                        echo "<a class='right carousel-control' href='#fullcarousel-example' data-slide='next'><i class='icon-next fa fa-angle-right'></i></a>" . "\n";
+                    endif;
+                    ?>
                 </div>
-                <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
-                <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
             </div>
         </div>
-    </div>
+    <?php
+    endif;
+    ?>
     <!-- carrousel -->
+
 
     <div class="row">
         <!--columa esquerda-->

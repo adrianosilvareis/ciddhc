@@ -9,11 +9,9 @@ endif;
 <div class="site-container">
 
     <article class="page_article">
-    <!--<article>-->
 
 
         <div class="art_content">
-        <!--<div>-->
 
             <!--CABEÇALHO GERAL-->
             <header>
@@ -41,7 +39,7 @@ endif;
                         <hgroup>
                             <h3>
                                 GALERIA:
-                                <p> Veja fotos em: <mark><?= $post_title; ?></mark></p>
+                                <p> <small>Veja fotos em:</small> <?= $post_title; ?></p>
                             </h3>
                         </hgroup>
 
