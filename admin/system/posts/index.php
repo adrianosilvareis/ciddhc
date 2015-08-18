@@ -48,7 +48,10 @@
         $Read = new Controle();
         $Read->FullRead("SELECT * FROM ws_posts WHERE post_type = 'post' ORDER by post_status ASC, post_date DESC LIMIT :limit OFFSET :offset", "limit={$Pager->getLimit()}&offset={$Pager->getOffset()}", true);
 
-        if ($Read->getResult()):
+        if (!$Read->getResult()):
+            $Pager->ReturnPage();
+            WSErro("Desculpa, ainda não temos posts cadastrados", WS_INFOR);
+        else:
             foreach ($Read->getResult() as $post):
                 $posti++;
                 extract((array) $post);
@@ -78,9 +81,6 @@
                 </article>
                 <?php
             endforeach;
-        else:
-            $Pager->ReturnPage();
-            WSErro("Desculpa, ainda não temos posts cadastrados", WS_INFOR);
         endif;
         ?>
 

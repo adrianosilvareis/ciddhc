@@ -14,7 +14,7 @@ body{background: url(../images/body_bg.png) center center repeat}
 .line_title .vermelho{border-color: #FF6A6A}
 
 /*MENSAGENS DO SISTEM*/
-.trigger{padding: 15px; background: #eee; font-size: 14px; margin-bottom: 15px; color: #fff !important;}
+.trigger{padding: 15px; background: #eee; font-size: 14px; margin-bottom: 15px; color: #000 !important;}
 .trigger a{font-weight: 600; font-size: 12px; text-transform: uppercase; padding: 5px 15px; background: #069; color: #fff;}
 .trigger a:hover{background: #09f; color: #fff;}
 

@@ -1,0 +1,3 @@
+<?php 
+    $WsPostsFile = new WsPostsFile();
+?>

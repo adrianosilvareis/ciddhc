@@ -21,6 +21,7 @@
         $ReadSes = new WsCategories;
         $ReadSes->Execute()->Query("category_parent IS NULL ORDER BY category_title ASC");
         if (!$ReadSes->Execute()->getResult()):
+            WSErro("Desculpa, ainda não temos categorias cadastrados", WS_INFOR);
         else:
             foreach ($ReadSes->Execute()->getResult() as $ses):
                 extract((array) $ses);
