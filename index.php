@@ -5,14 +5,15 @@ $Session = new Session;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
     <head>
         <?php
         $Link = new Link;
         $Link->getTags();
+        Check::Manutencao($Link->getLocal());
         ?>        
     </head>
-    
+
     <body>
         <div class="section bg-color-fundo">
             <div class="container corpo bg-color-branco">

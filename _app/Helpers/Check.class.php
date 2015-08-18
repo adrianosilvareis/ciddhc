@@ -115,6 +115,20 @@ class Check {
     }
 
     /**
+     * Não permite que usuarios não logados vejam as paginas, quando em manutenção.     * 
+     * 
+     * @param Array $Local
+     */
+    public static function Manutencao($Local) {
+        if ($Local[0] != 'manutencao'):
+            $Login = new Login(3);
+            if (!$Login->CheckLogin()):
+                header('Location: manutencao');
+            endif;
+        endif;
+    }
+
+    /**
      * <b>Imagem Upload:</b> Ao executar este HELPER, ele automaticamente verifica a existencia da imagem na pasta
      * uploads. Se existir retorna a imagem redimensionada!
      * @return HTML = imagem redimencionada!
@@ -151,7 +165,7 @@ class Check {
         endif;
 
         if (!empty($tab)):
-            $file = file_get_contents( HOME . "/createbd/{$tab}.sql");
+            $file = file_get_contents(HOME . "/createbd/{$tab}.sql");
             try {
                 $stmt = Conn::prepare($file);
                 $stmt->execute();
@@ -160,4 +174,17 @@ class Check {
             }
         endif;
     }
+
+    public static function getOffset($Limit, $Offset, $All) {
+        if ($All < ($Offset + $Limit)):
+            if (($All - $Limit) <= 0):
+                return 0;
+            else:
+                return $All - $Limit;
+            endif;
+        else:
+            return $Offset;
+        endif;
+    }
+
 }

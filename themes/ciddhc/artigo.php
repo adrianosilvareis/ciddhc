@@ -6,20 +6,19 @@ else:
 endif;
 ?>
 <!--HOME CONTENT-->
-<div class="site-container">
+<section class="section">
 
-    <article class="page_article">
+    <article class="col-md-12">
         <!--<article>-->
 
-
-        <div class="art_content">
+        <div class="content artigos">
             <!--<div>-->
 
             <!--CABEÇALHO GERAL-->
             <header>
                 <hgroup>
                     <h1><?= $post_title; ?></h1>
-                    <div class="img capa">
+                    <div class="imagem">
                         <?= Check::Image('uploads' . DIRECTORY_SEPARATOR . $post_cover, $post_title, 578) ?>
                     </div>
                     <time datetime="<?= date('Y-m-d', strtotime($post_date)); ?>" pubdate>Enviada em: <?= date('d/m/Y H:i', strtotime($post_date)); ?>Hs</time>
@@ -104,11 +103,12 @@ endif;
 
             if ($readMode->getResult()):
                 $View = new View;
-                $tpl_m = $View->Load('article_m');
+                $tpl_m = $View->Load('article_relacionados');
                 ?>
-                <footer>
-                    <nav>
+                <footer class="relacionados">
+                    <section>
                         <h3>Veja também:</h3>
+
                         <?php
                         foreach ($readMode->getResult() as $more):
                             $more->datetime = date('Y-m-d', strtotime($more->post_date));
@@ -117,7 +117,8 @@ endif;
                             $View->Show((array) $more, $tpl_m);
                         endforeach;
                         ?>
-                    </nav>
+
+                    </section>
                     <div class="clear"></div>
                 </footer>
                 <?php
@@ -129,10 +130,10 @@ endif;
         </div><!--art content-->
 
         <!--SIDEBAR-->
-        <?php // require(REQUIRE_PATH . '/inc/sidebar.inc.php');  ?>
+        <?php //require(REQUIRE_PATH . '/inc/sidebar.inc.php');  ?>
 
         <div class="clear"></div>
     </article>
 
     <div class="clear"></div>
-</div><!--/ site container -->
+</section><!--/ site container -->

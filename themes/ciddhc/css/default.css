@@ -12,23 +12,40 @@ Folha de estilo para alterações especificas
 .page_notfound header h1{font-family: 'Baumans', cursive; font-size: 50px; color: #FF6A6A;}
 .page_notfound header p{font-family: 'Baumans', cursive; font-size: 16px; color: #666;}
 
-/*CIDDH*/
+/*BODY*/
 .row{margin-top: 10px;}
 .lateral{margin-top: 50px;}
 .corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;min-height: 800px;}
+.btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}
+.header{margin-bottom: 10px;}
+.menu li{margin-right: 30px;}
+
+/*DIVISORES*/
+.divbloco{height: 10px; margin: 10px;}
+
+/*BACKGROUND*/
 .bg-color-branco{background: #fff;}
 .bg-color-fundo{background: #d2daea;}
 .bg-color-rosa{background: #f23dff;}
 .bg-color-azul{background: #2828eb;}
-.divbloco{height: 10px; margin: 10px;}
-.btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}
-.header{margin-bottom: 10px;}
+
+/*NOTICIAS*/
 .noticias {padding: 0 !important;margin: 0 !important;}
 .noticias h1 {font-size: 1.4em; margin: 0 !important;}
 .noticias p {font-size: 0.9em;}
 .noticias time {font-size: 0.8em; color: #999;}
 
-/*Ao imprimir*/
+
+/*ARTIGOS*/
+.artigos {text-align: center;}
+.artigos header imagem {clear: both;}
+.artigos header h1 {font-size: 2em; margin: 15px !important;color: #337cbb;}
+.artigos p {font-size: 0.9em;}
+.artigos time {font-size: 0.8em; color: #999;}
+.artigos .relacionados {background-color: #54D8FF !important;color: #ffffff;}
+.artigos .relacionados time{color: #000;}
+
+/*AO IMPRIMIR*/
 @media print{
     .no-print, .no-print *{display: none !important;}
     .print{display: block !important;}

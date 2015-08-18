@@ -264,8 +264,9 @@ body{background: url(../images/body_bg.png) center center repeat}
 
 /*404*/
 .page_notfound header{text-align: center;}
-.page_notfound .notfounerror{width: 400px; font-family: 'Baumans', cursive; color: #eee; font-size: 140px; text-align: center; display: block; margin: 0 auto;}
+.page_notfound .notfounerror{width: 800px; font-family: 'Baumans', cursive; color: #eee; font-size: 140px; text-align: center; display: block; margin: 0 auto;}
 .page_notfound header h1{font-family: 'Baumans', cursive; font-size: 50px; color: #FF6A6A;}
+.page_notfound header h2{font-family: 'Baumans', cursive; font-size: 36px; color: #FF6A6A;}
 .page_notfound header p{font-family: 'Baumans', cursive; font-size: 16px; color: #666;}
 
 /*PAGINATOR*/

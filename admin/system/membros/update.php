@@ -57,12 +57,12 @@
             </label>
 
             <label class="label">
-                <span class="field">Titulo:</span>
+                <span class="field">Nome:</span>
                 <input type="text" name="post_title" value="<?php if (isset($post['post_title'])) echo $post['post_title']; ?>"/>
             </label>
 
             <label class="label">
-                <span class="field">Conteúdo:</span>
+                <span class="field">Curriculum:</span>
                 <textarea class="js_editor" name="post_content" rows="10"><?php if (isset($post['post_content'])) echo htmlspecialchars($post['post_content']); ?></textarea>
             </label>
 

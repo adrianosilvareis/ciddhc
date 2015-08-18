@@ -3,7 +3,7 @@
     <!-- menu -->
     <div class="row">
         <div class="col-md-12">
-            <ul class="nav nav-pills menu_js">
+            <ul class="nav nav-pills menu_js menu">
                 <li class="active" id="home">
                     <a href="<?= HOME ?>" id="home">Inicio</a>
                 </li>
