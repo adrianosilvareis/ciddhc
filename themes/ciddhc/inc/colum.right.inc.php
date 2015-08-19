@@ -1,4 +1,5 @@
 <div class="col-md-4">
+    
     <section class="section">
         <?php
         $cat = Check::CatByName('links');
@@ -17,6 +18,7 @@
         ?>
     </section>
     
+    <!--facebook-->
     <div id="fb-root"></div>
     <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -27,5 +29,6 @@
             js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.4";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="fb-like"></div>
+    <div class="fb-like"></div><!--facebook-->
+    
 </div>

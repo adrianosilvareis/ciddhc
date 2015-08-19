@@ -18,7 +18,7 @@ Folha de estilo para alterações especificas
 .corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;min-height: 800px;}
 .btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}
 .header{margin-bottom: 10px;}
-.menu li{margin-right: 30px;}
+.menu li{margin-right: 3%; min-width: 110px; text-align: center}
 
 /*DIVISORES*/
 .divbloco{height: 10px; margin: 10px;}

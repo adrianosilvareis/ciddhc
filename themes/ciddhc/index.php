@@ -63,14 +63,12 @@ $All = (!empty($Read->Execute()->findAll()) ? (int) $result : 0);
                         echo "<a class='left carousel-control' href='#fullcarousel-example' data-slide='prev'><i class='icon-prev fa fa-angle-left'></i></a>" . "\n";
                         echo "<a class='right carousel-control' href='#fullcarousel-example' data-slide='next'><i class='icon-next fa fa-angle-right'></i></a>" . "\n";
                     endif;
-                    ?>
+                endif;
+                ?>
 
-                </div>
+            </div>
 
-            </section>
-        <?php
-        endif;
-        ?>
+        </section>
         <!-- carrousel -->
 
 
