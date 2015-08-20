@@ -167,7 +167,7 @@
                                 <div class="img thumb_small">
                                     <?= Check::Image('../uploads/' . $gb->gallery_image, $gbi, 146, 100); ?>
                                 </div>  
-                                <a href="painel.php?exe=cartilhas/update&postId=<?= $postid; ?>&gbdel=<?= $gb->gallery_id; ?>#gbfoco" class="del">Deletar</a>
+                                <a href="painel.php?exe=membros/update&postId=<?= $postid; ?>&gbdel=<?= $gb->gallery_id; ?>#gbfoco" class="del">Deletar</a>
                             </li>
                             <?php
                         endforeach;

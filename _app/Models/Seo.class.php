@@ -71,6 +71,22 @@ class Seo {
                 endif;
                 break;
 
+            //SEO:: NOTICIAS
+            case 'noticias':
+                $ReadSeo = new WsPosts;
+                $ReadSeo->setPost_type($this->Link);
+                $ReadSeo->Execute()->Query("#post_type#");
+
+                if (!$ReadSeo->Execute()->getResult()):
+                    $this->seoData = null;
+                    $this->seoTags = null;
+                else:
+                    extract((array) $ReadSeo->Execute()->getResult()[0]);
+                    $this->seoData = (array) $ReadSeo->Execute()->getResult();
+                    $this->Data = [$post_type . ' - ' . SITENAME, $post_content, HOME . "/noticias/{$post_type}", INCLUDE_PATH . '/images/site.png'];
+                endif;
+                break;
+
             //SEO:: CATEGORIA
             case 'categoria':
                 $ReadSeo = new WsCategories;
@@ -107,26 +123,34 @@ class Seo {
                 endif;
                 break;
 
-            //SEO:: Contato
-            case 'contato':
-                $this->Data = [SITENAME . ' - Fale conosco', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
-                break;
-
-            //SEO:: membros
-            case 'membros':
-                $this->Data = [SITENAME . ' - Parceiros da causa.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
-                break;
-
-            //SEO:: institucional
-            case 'institucional':
-                $this->Data = [SITENAME . ' - Institucional.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
-                break;
-
             //SEO:: INDEX
             case 'index':
                 $this->Data = [SITENAME . ' - ' . SITEDESC, SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
                 break;
 
+            case 'pages':
+                switch ($this->Link) {
+                    //SEO:: Contato
+                    case 'contato':
+                        $this->Data = [SITENAME . ' - Fale conosco', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
+                        break;
+
+                    //SEO:: membros
+                    case 'membros':
+                        $this->Data = [SITENAME . ' - Parceiros da causa.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
+                        break;
+
+                    //SEO:: institucional
+                    case 'institucional':
+                        $this->Data = [SITENAME . ' - Institucional.', SITEDESC, HOME, INCLUDE_PATH . '/images/site.png'];
+                        break;
+
+                    //SEO:: 404
+                    default :
+                        $this->Data = ['404 Oppss, Nada encontrado!', SITEDESC, HOME . '/404', INCLUDE_PATH . '/images/site.png'];
+                        break;
+                }
+                break;
             //SEO:: 404
             default :
                 $this->Data = ['404 Oppss, Nada encontrado!', SITEDESC, HOME . '/404', INCLUDE_PATH . '/images/site.png'];
@@ -148,9 +172,9 @@ class Seo {
         $this->Tags = array_map('trim', $this->Tags);
 
         $this->Data = null;
-        
-        $this->seoTags = "\n";    
-        $this->seoTags .= "<meta charset='UTF-8'>" . "\n";    
+
+        $this->seoTags = "\n";
+        $this->seoTags .= "<meta charset='UTF-8'>" . "\n";
         $this->seoTags .= "<!--[if lt IE 9]><script src='../../_cdn/html5.js'></script><![endif]-->" . "\n";
 
         //NORMAL PAGE
@@ -171,8 +195,8 @@ class Seo {
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_plugins.conf.js\"></script>" . "\n";
         $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_scripts.conf.js\"></script>" . "\n";
         $this->seoTags .= "<link href='" . HOME . "/_cdn/shadowbox/shadowbox.css' rel='stylesheet' type='text/css' >" . "\n";
-        $this->seoTags .= "\n";    
-        
+        $this->seoTags .= "\n";
+
         //ICONES
         $this->seoTags .= "<link rel='shortcut icon' href='" . HOME . '/themes/' . THEME . "/images/icon.ico'/>" . "\n";
         $this->seoTags .= "<link rel='apple-touch-icon' href='" . HOME . '/themes/' . THEME . "/images/icon.ico'/>" . "\n";
@@ -203,13 +227,13 @@ class Seo {
         $this->seoTags .= "<link href='{$thema}/css/default.css' rel='stylesheet' type='text/css' >" . "\n";
         $this->seoTags .= "<link href='{$thema}/css/estilo.css' rel='stylesheet' type='text/css' >" . "\n";
         $this->seoTags .= "<link href='{$thema}/css/reset.css' rel='stylesheet' type='text/css' >" . "\n";
-        
+
         //API GOOGLE
         $this->seoTags .= "<link href='http://fonts.googleapis.com/css?family=Baumans' rel='stylesheet' type='text/css'>";
 
-        
-        
-                
+
+
+
         $this->Tags = null;
     }
 

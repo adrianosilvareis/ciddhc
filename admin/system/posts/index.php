@@ -43,7 +43,7 @@
         $posti = 0;
         $getPage = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
         $Pager = new Pager("painel.php?exe=posts/index&page=");
-        $Pager->ExePager($getPage, 5);
+        $Pager->ExePager($getPage, 6);
 
         $Read = new Controle();
         $Read->FullRead("SELECT * FROM ws_posts WHERE post_type = 'post' ORDER by post_status ASC, post_date DESC LIMIT :limit OFFSET :offset", "limit={$Pager->getLimit()}&offset={$Pager->getOffset()}", true);
@@ -87,7 +87,7 @@
         <div class="clear"></div>
     </section>
     <?php
-    $Pager->ExePaginator("ws_posts");
+    $Pager->ExePaginator("ws_posts", "#post_type#", "post_type={$post_type}", true);
     echo $Pager->getPaginator();
     ?>
     <div class="clear"></div>

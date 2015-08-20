@@ -47,6 +47,11 @@ define('THEME', 'ciddhc');
 define('INCLUDE_PATH', HOME . DIRECTORY_SEPARATOR . 'themes' . DIRECTORY_SEPARATOR . THEME);
 define('REQUIRE_PATH', 'themes' . DIRECTORY_SEPARATOR . THEME);
 
+//REDES SOCIAIS
+define('CANAL', 'UCG1S-LQV55pl0-n_KLTNtJQ');
+define('FACEBOOK', 'adriano.reis23');
+define('TWITTER', 'Adriano_EngPro');
+
 //TRATAMENTO DE ERROS #####################
 //CSS Constantes :: Mensagens de Erro
 define("WS_ACCEPT", 'accept');

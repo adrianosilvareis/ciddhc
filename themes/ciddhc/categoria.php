@@ -10,7 +10,7 @@ endif;
     <div class="col-md-12">
 
         <header>
-            <h2><?= $category_title; ?></h2>
+            <h1 class="title"><?= $category_title; ?></h1>
             <p><?= $category_content; ?></p>
         </header>
 
@@ -25,25 +25,24 @@ endif;
             $Pager->ReturnPage();
             WSErro("Desculpe, a categoria <b>{$category_title}</b> ainda não tem artigos publicados, favor volte mais tarde!", WS_INFOR);
         else:
-            $cc = 0;
+            $cc = 1;
+            $View = new View();
+            $tpl_m = $View->Load('article_m');
             foreach ($readCat->Execute()->getResult() as $cat):
-                $cc++;
-                $View = new View();
-                $tpl_cat = $View->Load('article_m');
+                echo "\n<div class='col-md-4'>\n";
                 $class = ($cc % 3 == 0 ? ' class="right"' : null);
                 $cat->post_title = Check::Words($cat->post_title, 8);
                 $cat->post_content = Check::Words($cat->post_content, 20);
                 $cat->datetime = date('Y-m-d', strtotime($cat->post_date));
                 $cat->pubdate = date('d/m/Y H:i', strtotime($cat->post_date));
-                $View->Show((array) $cat, $tpl_cat);
+                $View->Show((array) $cat, $tpl_m);
+                $cc++;
+                echo "\n</div>\n";
             endforeach;
         endif;
         $Pager->ExePaginator("ws_posts", "post_status = 1 AND (post_category = :cat OR post_cat_parent = :cat)", "cat={$category_id}");
         ?>
     </div><!--/ site container -->
 
-    <nav class="pagination">
-        <h1><small>Mais resultados para </small><?= $category_title; ?></h1>
-        <?= $Pager->getPaginator(); ?>
-    </nav>
+    <?= $Pager->getPaginator(); ?>
 </section>

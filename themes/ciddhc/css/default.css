@@ -13,7 +13,9 @@ Folha de estilo para alterações especificas
 .page_notfound header p{font-family: 'Baumans', cursive; font-size: 16px; color: #666;}
 
 /*BODY*/
-.row{margin-top: 10px;}
+.semantica{font-size: 0;margin: 0; padding: 0;}
+.title{text-transform: capitalize;}
+
 .lateral{margin-top: 50px;}
 .corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;min-height: 800px;}
 .btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}

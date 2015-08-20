@@ -95,11 +95,11 @@ class Email {
         //SMTP AUTH
         $this->Mail->isSMTP();
         $this->Mail->SMTPAuth = true;
-        $this->Mail->SMTPSecure = "TLS";
+        $this->Mail->SMTPSecure = "tls";
         $this->Mail->isHTML();
 
         //REMETENTE E RETORNO
-        $this->Mail->From = MAILUSER;
+        $this->Mail->From = $this->DestinoEmail;
         $this->Mail->FromName = $this->RemetenteNome;
         $this->Mail->addReplyTo($this->RemetenteEmail, $this->RemetenteNome);
 

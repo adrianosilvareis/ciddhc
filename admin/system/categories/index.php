@@ -88,6 +88,4 @@
 
         <div class="clear"></div>
     </section>
-
-    <div class="clear"></div>
 </div> <!-- content home -->

@@ -87,8 +87,7 @@
         <div class="clear"></div>
     </section>
     <?php
-    $Pager->ExePaginator("ws_posts");
+    $Pager->ExePaginator("ws_posts", "#post_type#", "post_type={$post_type}", true);
     echo $Pager->getPaginator();
     ?>
-    <div class="clear"></div>
 </div> <!-- content home -->

@@ -1,5 +1,5 @@
 <header>
-    <img src="<?= HOME . '/themes/' . THEME ?>/images/topo.png" alt="nome do site" class="img-responsive">
+    <h1 class="semantica"><?= SITENAME ?><a href="<?= HOME ?>"><img src="<?= HOME . '/themes/' . THEME ?>/images/topo.png" alt="nome do site" class="img-responsive"></a></h1>
     <!-- menu -->
     <div class="row">
         <div class="col-md-12">
@@ -8,16 +8,16 @@
                     <a href="<?= HOME ?>" id="home">Inicio</a>
                 </li>
                 <li id="institucional">
-                    <a href="<?= HOME ?>/institucional" >Institucional</a>
+                    <a href="<?= HOME ?>/pages/institucional" >Institucional</a>
                 </li>
                 <li id="membros">
-                    <a href="<?= HOME ?>/membros" >Membros</a>
+                    <a href="<?= HOME ?>/pages/membros" >Membros</a>
                 </li>
                 <li id="contato">
-                    <a href="<?= HOME ?>/contato" id="contato">Atendimento</a>
+                    <a href="<?= HOME ?>/pages/contato" id="contato">Atendimento</a>
                 </li>
                 <li>
-                    <a href="<?= HOME ?>/admin">Webmail</a>
+                    <a href="<?= HOME ?>/admin" target="_blank">Webmail</a>
                 </li>
             </ul>
             <!-- menu -->

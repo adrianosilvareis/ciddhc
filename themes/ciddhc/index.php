@@ -5,6 +5,7 @@ $cartilha = $View->Load("cartilhas_m");
 $youtube = $View->Load("youtube_m");
 $tpl_p = $View->Load("article_p");
 $tpl_m = $View->Load("article_m");
+
 $Read = new WsPosts();
 $result = $Read->Execute()->FullRead("SELECT COUNT(post_name) as 'cont' FROM ws_posts WHERE post_type = 'post'")[0]->cont;
 $All = (!empty($Read->Execute()->findAll()) ? (int) $result : 0);

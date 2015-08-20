@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <?php
                 $Contato = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-                if ($Contato && $Contato['SendFormContato']):
+                if (!empty($Contato) && $Contato['SendFormContato']):
                     unset($Contato['SendFormContato']);
 
                     $Contato['Assunto'] = MAILASSUNTO;
@@ -20,7 +20,7 @@
                     endif;
                 endif;
                 ?>
-                <form name="FormContato" action="#contato" method="post">
+                <form name="SendFormContato" action="#contato" method="post">
                     <div class="form-group">
                         <label class="control-label" >Nome</label>
                         <input class="form-control" placeholder="Digite seu nome (Deixe em branco caso deseje anonimato)"
@@ -32,11 +32,11 @@
                                type="email" title="Informe seu e-mail" name="RemetenteEmail" required>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="exampleInputPassword1">Mensagem</label>
+                        <label class="control-label" >Mensagem</label>
                         <textarea class="form-control" placeholder="Digite sua mensagem" 
                                   title="Envie sua mensagem" name="Mensagem" required rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-block btn-info" name="SendFormContato">Enviar</button>
+                    <button type="submit" class="btn btn-block btn-info" name="SendFormContato" value="enviar">Enviar</button>
                 </form>            
             </div>
         </div>

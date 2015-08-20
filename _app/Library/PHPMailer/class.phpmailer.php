@@ -230,7 +230,7 @@ class PHPMailer
      * @type integer
      * @TODO Why is this needed when the SMTP class takes care of it?
      */
-    public $Port = 25;
+    public $Port = 587;
 
     /**
      * The SMTP HELO of the message.

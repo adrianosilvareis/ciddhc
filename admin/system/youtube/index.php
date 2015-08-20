@@ -43,7 +43,7 @@
         $posti = 0;
         $getPage = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
         $Pager = new Pager("painel.php?exe=youtube/index&page=");
-        $Pager->ExePager($getPage, 5);
+        $Pager->ExePager($getPage, 6);
 
         $Read = new Controle();
         $Read->FullRead("SELECT * FROM app_youtube ORDER by youtube_status ASC, youtube_date DESC LIMIT :limit OFFSET :offset", "limit={$Pager->getLimit()}&offset={$Pager->getOffset()}", true);
