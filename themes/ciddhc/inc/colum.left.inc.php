@@ -4,9 +4,9 @@
     <div class="col-md-12">
 
 
-        <section class="section">
+        <section class="nomargin section">
 
-            <h1><a href="<?= HOME ?>/noticias/post" class="btn btn-site">Mais notícias</a></h1>
+            <h1 class="nomargin"><a href="<?= HOME ?>/noticias/post" class="btn btn-site">Mais notícias</a></h1>
             <div class="col-md-12 divbloco bg-color-rosa"></div>
 
             <article class="row"><!-- primeira linha -->
@@ -53,9 +53,9 @@
     <!-- cartilhas -->
     <div class="col-md-12">
 
-        <section class="section">
+        <section class="nomargin section">
 
-            <h1><a href="<?= HOME ?>/noticias/cartilhas/" class="btn btn-site">Cartilhas</a></h1>
+            <h1 class="nomargin"><a href="<?= HOME ?>/noticias/cartilhas/" class="btn btn-site">Cartilhas</a></h1>
 
             <?php
             $Read->Execute()->Query("post_status = 1 AND post_type = 'cartilhas' AND (post_cat_parent = :cat OR post_category = :cat) ORDER BY post_date DESC LIMIT :limit OFFSET :offset", "cat={$cat}&limit=2&offset=0", true);
@@ -79,9 +79,9 @@
     <!-- Canal Youtube -->
     <div class="col-md-12">
 
-        <section class="section">
+        <section class="nomargin section">
             
-            <h1><a href="https://www.youtube.com/channel/<?= CANAL ?>" target="_blank" class="btn btn-site">Canal do Youtube</a></h1>
+            <h1 class="nomargin"><a href="https://www.youtube.com/channel/<?= CANAL ?>" target="_blank" class="btn btn-site">Canal do Youtube</a></h1>
             
             <?php
             $AppYou = new AppYoutube();

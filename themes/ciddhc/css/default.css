@@ -19,6 +19,7 @@ Folha de estilo para alterações especificas
 .lateral{margin-top: 50px;}
 .corpo{padding: 20px;border: 1px solid #282827;border-radius: 10px;max-width: 956px;min-height: 800px;}
 .btn-site{width: 200px;background: #d2daea;color: #2828eb;text-transform: uppercase;font-weight: bold;}
+.nomargin{margin: 0;padding: 0;}
 .header{margin-bottom: 10px;}
 .menu li{margin-right: 3%; min-width: 110px; text-align: center}
 
