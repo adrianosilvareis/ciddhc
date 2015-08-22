@@ -1,5 +1,5 @@
 <header>
-    <h1 class="semantica"><?= SITENAME ?><a href="<?= HOME ?>"><img src="<?= HOME . '/themes/' . THEME ?>/images/topo.png" alt="nome do site" class="img-responsive"></a></h1>
+    <h1 class="semantica"><?= SITENAME ?><a href="<?= HOME ?>"><img src="<?= HOME . '/themes/' . THEME ?>/images/topo.png" alt="<?= SITENAME ?>" class="img-responsive"></a></h1>
     <!-- menu -->
     <div class="row">
         <div class="col-md-12">

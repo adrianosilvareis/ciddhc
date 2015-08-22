@@ -16,7 +16,7 @@ $Session = new Session;
 
     <body>
         <div class="section bg-color-fundo">
-            <div class="container corpo bg-color-branco">
+            <div class="corpo bg-color-branco">
                 <?php
                 require(REQUIRE_PATH . '/inc/header.inc.php');
 
