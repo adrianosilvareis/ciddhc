@@ -174,29 +174,17 @@ class Seo {
         $this->Data = null;
 
         $this->seoTags = "\n";
-        $this->seoTags .= "<meta charset='UTF-8'>" . "\n";
         $this->seoTags .= "<!--[if lt IE 9]><script src='../../_cdn/html5.js'></script><![endif]-->" . "\n";
 
+        $this->seoTags .= "\n";
+        $this->seoTags .= "<meta charset='UTF-8'>" . "\n";
+        
         //NORMAL PAGE
         $this->seoTags .= "<title>{$this->Tags['Title']}</title>" . "\n";
         $this->seoTags .= "<meta name='description' content='{$this->Tags['Content']}'/>" . "\n";
         $this->seoTags .= "<meta name='robots' content='index, fallow'/>" . "\n";
         $this->seoTags .= "<link rel='canonical' href='{$this->Tags['Link']}'>" . "\n";
         $this->seoTags .= "\n";
-
-        //SCRIPTS
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jquery.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/bootstrap.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jcycle.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jmask.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/combo.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/menus.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/shadowbox/shadowbox.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_plugins.conf.js\"></script>" . "\n";
-        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_scripts.conf.js\"></script>" . "\n";
-        $this->seoTags .= "<link href='" . HOME . "/_cdn/shadowbox/shadowbox.css' rel='stylesheet' type='text/css' >" . "\n";
-        $this->seoTags .= "\n";
-
         //ICONES
         $this->seoTags .= "<link rel='shortcut icon' href='" . HOME . '/themes/' . THEME . "/images/icon.ico'/>" . "\n";
         $this->seoTags .= "<link rel='apple-touch-icon' href='" . HOME . '/themes/' . THEME . "/images/icon.ico'/>" . "\n";
@@ -216,6 +204,20 @@ class Seo {
         $this->seoTags .= "<meta itemprop='name' content='{$this->Tags['Title']}' />" . "\n";
         $this->seoTags .= "<meta itemprop='description' content='{$this->Tags['Content']}' />" . "\n";
         $this->seoTags .= "<meta itemprop='url' content='{$this->Tags['Link']}' />" . "\n";
+        $this->seoTags .= "<meta itemprop='image' content='{$this->Tags['Image']}' />" . "\n";
+        $this->seoTags .= "\n";
+        
+        //SCRIPTS
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jquery.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/bootstrap.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jcycle.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/jmask.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/combo.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/menus.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/shadowbox/shadowbox.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_plugins.conf.js\"></script>" . "\n";
+        $this->seoTags .= "<script src=\"" . HOME . "/_cdn/_scripts.conf.js\"></script>" . "\n";
+        $this->seoTags .= "<link href='" . HOME . "/_cdn/shadowbox/shadowbox.css' rel='stylesheet' type='text/css' >" . "\n";
         $this->seoTags .= "\n";
 
         //BOOTSTRAP CSS

@@ -4,7 +4,7 @@ require_once './_app/Config.inc.php';
 $Session = new Session;
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" itemscope itemtype="http://schema.org/Article">
 
     <head>
         <?php
